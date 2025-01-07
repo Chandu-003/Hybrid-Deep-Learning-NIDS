@@ -42,8 +42,8 @@ Follow these steps to set up the project:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/ransomware-detection-xai.git
-   cd ransomware-detection-xai
+   git clone https://github.com/Chandu-003/Hybrid-Deep-Learning-NIDS.git
+   cd Hybrid-Deep-Learning-NIDS
    ```
 
 2. **Set Up a Virtual Environment**:
