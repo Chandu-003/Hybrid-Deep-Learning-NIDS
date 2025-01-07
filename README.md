@@ -1,7 +1,3 @@
-Here’s an engaging and detailed **README.md** for the "Ransomware Detection Using Explainable AI" project:
-
----
-
 # Ransomware Detection Using Explainable AI
 
 ## 🚀 Project Overview
