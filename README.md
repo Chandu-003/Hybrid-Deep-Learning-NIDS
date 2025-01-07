@@ -1,15 +1,14 @@
-# Ransomware Detection Using Explainable AI
+
+# Intrusion Detection Using Hybrid Deep Learning Techniques
 
 ## 🚀 Project Overview
-Ransomware attacks are among the most prevalent and sophisticated cybersecurity threats, with evolving techniques that evade traditional detection mechanisms. This project presents a novel approach to ransomware detection using **Explainable AI (XAI)** techniques such as **LIME (Local Interpretable Model-agnostic Explanations)** and **SHAP (Shapley Additive Explanations)**. 
-
-The model employs a machine learning-based **Artificial Neural Network (ANN)** to classify ransomware and benign files accurately. The integration of XAI ensures transparency in decision-making, allowing security analysts to understand why the model makes specific predictions.
+Intrusion Detection Systems (IDS) play a critical role in maintaining the security of networks by identifying malicious activities. Traditional IDS solutions struggle with high false-positive rates and often fail to detect sophisticated, evolving threats. This project proposes a **Hybrid Deep Learning-Based IDS** that utilizes **Autoencoders**, **CNNs (Convolutional Neural Networks)**, and **LSTMs (Long Short-Term Memory)** to achieve high accuracy in detecting and classifying network intrusions.
 
 ### Key Features:
-- **Explainable AI Integration**: Offers local and global explanations for predictions.
-- **High Accuracy Detection**: Uses ANN for robust ransomware classification.
-- **Feature Importance**: Highlights the most critical features contributing to predictions.
-- **Transparency**: Builds trust with interpretable machine learning techniques.
+- **Hybrid Architecture**: Combines autoencoders for feature extraction with CNN-LSTM for spatial-temporal analysis.
+- **Multi-class Detection**: Identifies a range of network anomalies, including DoS, DDoS, and probing attacks.
+- **Scalability**: Designed to handle extensive datasets and real-time traffic.
+- **User Interface**: Includes a browser-based interface for real-time analysis and visualization.
 
 ---
 
@@ -27,30 +26,29 @@ The model employs a machine learning-based **Artificial Neural Network (ANN)** t
 ---
 
 ## 🌟 Introduction
-Ransomware is a type of malicious software that encrypts a victim's files and demands a ransom for decryption. The rapid evolution of ransomware necessitates advanced detection mechanisms. This project leverages a combination of **Artificial Neural Networks (ANN)** and XAI tools to provide a reliable and interpretable ransomware detection system.
+The increasing sophistication of cyber threats has highlighted the need for intelligent, adaptive, and real-time IDS solutions. By integrating deep learning techniques, this project aims to enhance intrusion detection by:
+- Extracting meaningful features with **autoencoders**.
+- Analyzing spatial features using **CNN layers**.
+- Capturing temporal dependencies with **LSTM layers**.
 
-This system addresses key limitations of traditional detection methods, such as:
-- Inability to detect novel ransomware variants.
-- Lack of interpretability in machine learning models.
-
-With XAI tools like LIME and SHAP, this project ensures that predictions are not only accurate but also explainable, making it easier for cybersecurity professionals to trust and adopt the system.
+This hybrid approach reduces false positives and ensures robust anomaly detection in diverse network environments.
 
 ---
 
 ## 🛠 Installation
-Follow these steps to set up the project:
+To set up the project, follow these steps:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/Chandu-003/Hybrid-Deep-Learning-NIDS.git
-   cd Hybrid-Deep-Learning-NIDS
+   git clone https://github.com/yourusername/nids-hybrid-deep-learning.git
+   cd nids-hybrid-deep-learning
    ```
 
 2. **Set Up a Virtual Environment**:
    ```bash
    python -m venv venv
    source venv/bin/activate  # For Linux/Mac
-   venv\Scripts\activate     # For Windows
+   venv\Scriptsctivate     # For Windows
    ```
 
 3. **Install Dependencies**:
@@ -58,8 +56,8 @@ Follow these steps to set up the project:
    pip install -r requirements.txt
    ```
 
-4. **Prepare the Dataset**:
-   - Use a ransomware dataset (e.g., [Kaggle Ransomware Dataset](https://www.kaggle.com)).
+4. **Download the Dataset**:
+   - Use publicly available datasets like [NSL-KDD](https://www.unb.ca/cic/datasets/nsl.html) or [CICIDS2017](https://www.unb.ca/cic/datasets/ids-2017.html).
    - Place the dataset in the `data/` directory.
 
 5. **Run Preprocessing Scripts**:
@@ -75,7 +73,8 @@ Follow these steps to set up the project:
 ---
 
 ## 📖 Usage
-### Running the Detection System
+After setting up, you can use the project for both training and inference:
+
 1. **Train the Model**:
    ```bash
    python src/train_model.py --epochs 50 --batch_size 32
@@ -83,24 +82,14 @@ Follow these steps to set up the project:
 
 2. **Evaluate the Model**:
    ```bash
-   python src/evaluate_model.py --model_path models/ransomware_ann.h5
+   python src/evaluate_model.py --model_path models/hybrid_model.h5
    ```
 
-3. **Generate Explanations**:
-   - Use LIME to generate local explanations:
-     ```bash
-     python src/generate_lime_explanations.py --input sample_file.csv
-     ```
-   - Use SHAP to generate global feature importance:
-     ```bash
-     python src/generate_shap_explanations.py --input dataset.csv
-     ```
-
-4. **Launch the Visualization Interface**:
+3. **Run the Real-Time Analyzer**:
    ```bash
-   python src/run_visualizer.py
+   python src/run_analyzer.py
    ```
-   Open the browser interface at [http://localhost:5000](http://localhost:5000).
+   Access the browser-based interface at [http://localhost:5000](http://localhost:5000).
 
 ---
 
@@ -110,13 +99,12 @@ Ensure the following libraries are installed:
 - TensorFlow 2.10+
 - NumPy
 - Pandas
-- Scikit-learn
 - Matplotlib
-- Flask
-- LIME
-- SHAP
+- Scikit-learn
+- Flask (for the web interface)
+- Jinja2 (templating for the web interface)
 
-Install all dependencies using:
+You can install all dependencies using:
 ```bash
 pip install -r requirements.txt
 ```
@@ -126,33 +114,29 @@ pip install -r requirements.txt
 ## 🔬 Methodology
 1. **Data Preprocessing**:
    - Normalize features using MinMaxScaler.
-   - Handle class imbalances through resampling techniques.
+   - Remove outliers and handle missing data.
 
-2. **Feature Combination**:
-   - Combine features such as `ImageBase`, `VersionInformationSize`, and `SubSystem` into a feature vector.
-   - Perform dimensionality reduction using PCA, if required.
+2. **Feature Extraction**:
+   - Utilize an autoencoder to reduce the dimensionality and noise of the dataset.
 
-3. **Model Design**:
-   - An **ANN (Artificial Neural Network)** is used for classification.
-   - The model includes dense layers with dropout to prevent overfitting.
+3. **Hybrid Model**:
+   - **CNN Layers**: Extract spatial patterns in network traffic.
+   - **LSTM Layers**: Capture temporal sequences for anomaly detection.
 
-4. **Explainability**:
-   - **LIME** provides local explanations for individual predictions.
-   - **SHAP** offers global feature importance to understand model behavior across the dataset.
+4. **Evaluation Metrics**:
+   - **Accuracy**, **Precision**, **Recall**, **F1-Score**, and **ROC-AUC**.
 
 ---
 
 ## 📊 Results
-- **Detection Accuracy**: 97% on test data.
-- **False Positive Rate**: Significantly reduced compared to traditional systems.
-- **Explainability**: Visualizations from LIME and SHAP highlight key features and decisions.
-
-Detailed results, including graphs for training loss, accuracy, and feature importance, are stored in the `results/` directory.
+- **Accuracy**: Achieved up to 95% accuracy in multi-class classification.
+- **False Positive Rate**: Reduced false positives significantly compared to traditional models.
+- **Visualization**: Detailed graphs for loss, accuracy, and confusion matrices are available in the `results/` folder.
 
 ---
 
 ## 🤝 Contributing
-Contributions are welcome! Follow these steps to contribute:
+Contributions are welcome! Follow these steps:
 1. Fork the repository.
 2. Create a new branch:
    ```bash
@@ -164,8 +148,13 @@ Contributions are welcome! Follow these steps to contribute:
 ---
 
 ## 🚀 Future Enhancements
-- Incorporate more advanced machine learning algorithms for comparison.
-- Expand the dataset to include diverse ransomware families.
-- Deploy the system using Docker for easier distribution.
+- Integrate additional datasets for improved generalization.
+- Optimize the model for real-time deployment.
+- Add support for containerized deployment using Docker.
+
+---
+
+## 📜 License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
